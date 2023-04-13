@@ -1,12 +1,11 @@
 import express, { Request, Response } from "express";
-import User from "../model/User";
+import { User } from "../model/User";
+import { getUser } from "../services/user-services";
 export const userRouter = express.Router();
 
 //find user by id
 userRouter.get("/:id", async (req: Request, res: Response) => {
-  console.log(req.params.id);
-
-  const user = await User.findOne({ _id: req.params.id }).limit(1);
+  const user = await getUser(req.params.id);
   return res.status(200).send(user);
 });
 

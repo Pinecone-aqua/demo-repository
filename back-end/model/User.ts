@@ -1,34 +1,28 @@
 import mongoose from "mongoose";
+import { UserType } from "../util/types";
 
-interface UserInterface {
-  price: number;
-  name: string;
-  quantity: number;
-  category: string;
-  brand: string;
-}
-
-const UserSchema = new mongoose.Schema<UserInterface>(
+const UserSchema = new mongoose.Schema<UserType>(
   {
-    price: {
+    firstName: {
+      type: String,
+      required: true,
+    },
+    lastName: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+    },
+    phoneNumber: {
       type: Number,
       required: true,
     },
-    name: {
+    role: {
       type: String,
       required: true,
-    },
-    quantity: {
-      type: Number,
-      required: true,
-    },
-    category: {
-      type: String,
-      required: true,
-    },
-    brand: {
-      type: String,
-      required: true,
+      default: "client",
     },
   },
   {
@@ -36,6 +30,4 @@ const UserSchema = new mongoose.Schema<UserInterface>(
   }
 );
 
-const User = mongoose.model("User", UserSchema, "users");
-
-export default User;
+export const User = mongoose.model("User", UserSchema, "users");
