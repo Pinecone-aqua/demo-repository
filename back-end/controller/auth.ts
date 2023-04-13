@@ -57,7 +57,7 @@ export const register = (req: Request, res: Response): void => {
 };
 
 export const googleLogin = (req: Request, res: Response): void => {
-  const stringifiedParams = queryString.default.stringify({
+  const stringifiedParams = queryString.stringify({
     client_id: process.env.CLIENT_ID,
     redirect_uri: `http://localhost:${process.env.PORT}/google/callback`,
     scope: [
