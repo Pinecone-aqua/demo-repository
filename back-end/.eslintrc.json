@@ -1,0 +1,14 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": ["plugin:@typescript-eslint/recommended"],
+  "parserOptions": { "ecmaVersion": 2018, "sourceType": "module" },
+  "overrides": [
+    {
+      "files": ["*.ts", "**/*.ts"],
+      "excludedFiles": "*.test.js",
+      "rules": {
+        "@typescript-eslint/explicit-module-boundary-types": "error"
+      }
+    }
+  ]
+}

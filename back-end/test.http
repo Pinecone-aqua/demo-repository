@@ -1,0 +1,14 @@
+POST http://localhost:5001/restaurant HTTP/1.1
+Content-Type: application/json
+
+{
+  "location": {
+    "type": "Point",
+    "coordinates": [106.934110,47.923734]
+  }
+}
+
+###
+
+GET http://localhost:5001/movie HTTP/1.1
+
