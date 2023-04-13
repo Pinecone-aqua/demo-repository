@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-interface ProductInterface {
+interface UserInterface {
   price: number;
   name: string;
   quantity: number;
@@ -8,7 +8,7 @@ interface ProductInterface {
   brand: string;
 }
 
-const ProductSchema = new mongoose.Schema<ProductInterface>(
+const UserSchema = new mongoose.Schema<UserInterface>(
   {
     price: {
       type: Number,
@@ -32,10 +32,10 @@ const ProductSchema = new mongoose.Schema<ProductInterface>(
     },
   },
   {
-    collection: "products",
+    collection: "users",
   }
 );
 
-const Product = mongoose.model("Product", ProductSchema, "products");
+const User = mongoose.model("User", UserSchema, "users");
 
-export default Product;
+export default User;

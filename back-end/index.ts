@@ -2,14 +2,15 @@ import express, { Express, Request, Response } from "express";
 import * as dotenv from "dotenv";
 // import restaurantRoute from "./controller/RestaurantsRouter";
 import db from "./config/mongoose-config";
-import movieRouter from "./controller/MovieRouter";
+import { productRouter, userRouter } from "./controller";
 import cors from "cors";
 dotenv.config();
 
 const app: Express = express();
 const port: string | undefined = process.env.PORT;
 app.use(cors());
-app.use(movieRouter);
+app.use("/product", productRouter);
+app.use("/user", userRouter);
 
 db.once("open", () => {
   console.log("connected successfully");
