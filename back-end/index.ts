@@ -4,7 +4,7 @@ import * as dotenv from "dotenv";
 import db from "./config/mongoose-config";
 import { productRouter, userRouter } from "./controller";
 import cors from "cors";
-import { googleLogin } from "./controller/auth";
+import { getUserInfo, googleLogin, verifyGoogle } from "./controller/auth";
 dotenv.config();
 
 const app: Express = express();
@@ -13,7 +13,11 @@ const port: string | undefined = process.env.PORT;
 app.use(cors());
 app.use("/product", productRouter);
 app.use("/user", userRouter);
-app.use("/google", googleLogin);
+app.use("/google-login", googleLogin);
+app.get("/google/callback", verifyGoogle, getUserInfo);
+// app.get("/google-bla", (res, req) => {
+//   console.log("BLa url,", res.query);
+// });
 
 db.once("open", () => {
   console.log("connected successfully");

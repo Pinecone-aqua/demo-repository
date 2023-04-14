@@ -57,6 +57,7 @@ export const register = (req: Request, res: Response): void => {
 };
 
 export const googleLogin = (req: Request, res: Response): void => {
+  console.log("process.env.CLIENT_ID: ", process.env.CLIENT_ID);
   const stringifiedParams = queryString.stringify({
     client_id: process.env.CLIENT_ID,
     redirect_uri: `http://localhost:${process.env.PORT}/google/callback`,
@@ -78,6 +79,7 @@ export const verifyGoogle = async (
 ): Promise<void> => {
   const { code } = req.query;
   const { access_token } = await getAccessTokenFromCode(code);
+  console.log(`access_token ${access_token}`);
   const user = await getGoogleUserInfo(access_token);
   res.locals.user = user;
   next();
@@ -91,17 +93,20 @@ async function getAccessTokenFromCode(code: any) {
       data: {
         client_id: process.env.CLIENT_ID,
         client_secret: process.env.CLIENT_SECRET,
-        redirect_uri: `http://localhost:${process.env.PORT}/google/callback`,
         grant_type: "authorization_code",
-        code,
+        redirect_uri: `http://localhost:${process.env.PORT}/google/callback`,
+        code: code,
       },
     });
+    console.log("data: ", data);
     return { access_token: data.access_token };
-  } catch (err) {
+  } catch (err: any) {
+    console.log("error: ", err);
     return { err };
   }
 }
 async function getGoogleUserInfo(access_token: string) {
+  console.log("access_token: ", access_token);
   const { data } = await axios({
     url: "https://www.googleapis.com/oauth2/v2/userinfo",
     method: "get",
