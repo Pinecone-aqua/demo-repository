@@ -57,7 +57,6 @@ export const register = (req: Request, res: Response): void => {
 };
 
 export const googleLogin = (req: Request, res: Response): void => {
-  console.log("process.env.CLIENT_ID: ", process.env.CLIENT_ID);
   const stringifiedParams = queryString.stringify({
     client_id: process.env.CLIENT_ID,
     redirect_uri: `http://localhost:${process.env.PORT}/google/callback`,
@@ -79,7 +78,6 @@ export const verifyGoogle = async (
 ): Promise<void> => {
   const { code } = req.query;
   const { access_token } = await getAccessTokenFromCode(code);
-  console.log(`access_token ${access_token}`);
   const user = await getGoogleUserInfo(access_token);
   res.locals.user = user;
   next();
@@ -98,7 +96,6 @@ async function getAccessTokenFromCode(code: any) {
         code: code,
       },
     });
-    console.log("data: ", data);
     return { access_token: data.access_token };
   } catch (err: any) {
     console.log("error: ", err);
@@ -106,7 +103,6 @@ async function getAccessTokenFromCode(code: any) {
   }
 }
 async function getGoogleUserInfo(access_token: string) {
-  console.log("getGoogleUserInfo: ", access_token);
   const { data } = await axios({
     url: "https://www.googleapis.com/oauth2/v2/userinfo",
     method: "get",
@@ -114,7 +110,6 @@ async function getGoogleUserInfo(access_token: string) {
       Authorization: `Bearer ${access_token}`,
     },
   });
-  // console.log("User Info: ", data);
 
   return data;
 }
