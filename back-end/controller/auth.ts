@@ -106,7 +106,7 @@ async function getAccessTokenFromCode(code: any) {
   }
 }
 async function getGoogleUserInfo(access_token: string) {
-  console.log("access_token: ", access_token);
+  console.log("getGoogleUserInfo: ", access_token);
   const { data } = await axios({
     url: "https://www.googleapis.com/oauth2/v2/userinfo",
     method: "get",
@@ -114,6 +114,7 @@ async function getGoogleUserInfo(access_token: string) {
       Authorization: `Bearer ${access_token}`,
     },
   });
+  // console.log("User Info: ", data);
 
   return data;
 }
@@ -136,7 +137,7 @@ export const getUserInfo = async (
       res
         .cookie("token", token)
         .status(200)
-        .redirect(`http://localhost:${process.env.PORT}`);
+        .redirect(`http://localhost:${process.env.CLIENT_PORT}`);
     } else {
       const newUser = new User({
         email: user.email,
@@ -144,7 +145,7 @@ export const getUserInfo = async (
         image: user.picture,
       });
       await newUser.save();
-      res.status(200).redirect(`http://localhost:${process.env.PORT}`);
+      res.status(200).redirect(`http://localhost:${process.env.CLIENT_PORT}`);
     }
   } catch (error) {
     res.status(400).send(`Something went wrong Error: ${error}`);
