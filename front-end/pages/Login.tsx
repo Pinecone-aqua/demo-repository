@@ -1,5 +1,7 @@
 import Layout from "@/components/Layout";
+import axios from "axios";
 import { useRouter } from "next/router";
+import { FaGoogle } from "react-icons/fa";
 
 export default function Login() {
   const router = useRouter();
@@ -9,6 +11,13 @@ export default function Login() {
     console.log(e.target.userName.value);
     console.log(e.target.password.value);
   }
+  function googleLoginHandler() {
+    console.log("testing");
+    axios.get("http://localhost:2023/google").then((res) => {
+      router.push(res.data);
+    });
+  }
+
   return (
     <Layout>
       <div className="w-screen h-[80vh] flex justify-center items-center">
@@ -46,12 +55,20 @@ export default function Login() {
 
           <button
             type="submit"
-            className="w-full rounded-lg text-sm bg-cyan-500 px-5 py-2 mt-5"
+            className="w-full rounded-lg text-sm bg-cyan-500 px-5 py-2 mt-5 text-white"
           >
             Нэвтрэх
           </button>
-
-          <div className="text-xs mt-2">
+          <div
+            onClick={googleLoginHandler}
+            className="rounded-lg text-sm bg-cyan-500 px-5 py-2 mt-5 flex justify-between align-center text-white cursor-pointer"
+          >
+            <div className="flex items-center">
+              <FaGoogle className="my-auto text-gray-300 absolute" />
+            </div>
+            <span className="mx-auto">Google-р Нэвтрэх</span>
+          </div>
+          <div className="text-xs mt-2 text-center">
             Бүртгэл үүсгээгүй бол
             <span
               className="cursor-pointer text-blue-700"

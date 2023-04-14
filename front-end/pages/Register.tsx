@@ -1,5 +1,4 @@
 import Layout from "@/components/Layout";
-import { FaGoogle } from "react-icons/fa";
 
 export default function Register() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -92,10 +91,6 @@ focus:invalid:border-pink-500 focus:invalid:ring-pink-500
           >
             Бүртгүүлэх
           </button>
-          <div className="w-full rounded-lg text-sm bg-cyan-500 px-5 py-2 mt-5 flex justify-around align-center text-white cursor-pointer">
-            <FaGoogle className="my-auto" />
-            Google-р бүртгүүлэх
-          </div>
         </form>
       </div>
     </Layout>

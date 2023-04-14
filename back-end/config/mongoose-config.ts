@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 mongoose.connect(
-  "mongodb+srv://test:test@cluster0.8erw8jx.mongodb.net/sample_mflix?retryWrites=true&w=majority"
+  "mongodb+srv://orgilshdeee:Blacklist12345@cluster0.rdjpop9.mongodb.net/demo-repositary"
 );
 
 export default mongoose.connection;

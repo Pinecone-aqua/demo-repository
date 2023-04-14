@@ -9,6 +9,7 @@ dotenv.config();
 
 const app: Express = express();
 const port: string | undefined = process.env.PORT;
+
 app.use(cors());
 app.use("/product", productRouter);
 app.use("/user", userRouter);

@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import { FaUser } from "react-icons/fa";
 
 export default function Header() {
   const router = useRouter();
@@ -17,12 +18,12 @@ export default function Header() {
         <div>3</div>
       </div>
       <div
-        className="cursor-pointer"
+        className="cursor-pointer flex items-center"
         onClick={() => {
           router.push("/Login");
         }}
       >
-        login
+        <FaUser />
       </div>
     </div>
   );
