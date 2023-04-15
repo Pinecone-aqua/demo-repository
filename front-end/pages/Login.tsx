@@ -13,7 +13,7 @@ export default function Login() {
   }
   function googleLoginHandler() {
     console.log("testing");
-    axios.get("http://localhost:2023/google").then((res) => {
+    axios.get("http://localhost:2023/google-login").then((res) => {
       router.push(res.data);
     });
   }
