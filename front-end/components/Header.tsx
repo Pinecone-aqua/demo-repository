@@ -1,8 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { FaUser } from "react-icons/fa";
 
-export default function Header() {
+interface HeaderType {
+  user: any;
+  setUser: (arg: any) => void;
+}
+
+export default function Header({ user, setUser }: HeaderType) {
   const router = useRouter();
+
   return (
     <div className="p-5 flex justify-between border">
       <div className="flex gap-5">
@@ -17,14 +25,29 @@ export default function Header() {
         <div>2</div>
         <div>3</div>
       </div>
-      <div
-        className="cursor-pointer flex items-center"
-        onClick={() => {
-          router.push("/Login");
-        }}
-      >
-        <FaUser />
-      </div>
+      {user ? (
+        <div className="flex gap-5">
+          <div>hello {user.email}</div>
+          <div
+            className="cursor-pointer"
+            onClick={() => {
+              Cookies.remove("token");
+              setUser("");
+            }}
+          >
+            logout
+          </div>
+        </div>
+      ) : (
+        <div
+          className="cursor-pointer flex items-center"
+          onClick={() => {
+            router.push("/Login");
+          }}
+        >
+          <FaUser />
+        </div>
+      )}
     </div>
   );
 }
