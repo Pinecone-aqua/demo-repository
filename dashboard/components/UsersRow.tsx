@@ -6,7 +6,7 @@ interface TableRowType {
   index: number;
 }
 
-export default function TableRow({ user, index }: TableRowType) {
+export default function UsersRow({ user, index }: TableRowType) {
   function deleteHandler() {
     if (window.confirm("Устгах уу?")) {
       axios.delete(`http://localhost:2023/user/${user._id}`);
