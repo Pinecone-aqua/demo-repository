@@ -12,6 +12,7 @@ const app: Express = express();
 const port: string | undefined = process.env.PORT;
 
 app.use(cors());
+app.use(express.json());
 app.use("/product", productRouter);
 app.use("/user", userRouter);
 // app.use("/addUser", verifyToken,userRouter);
