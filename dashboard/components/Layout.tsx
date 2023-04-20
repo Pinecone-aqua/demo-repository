@@ -9,7 +9,6 @@ interface LayoutType {
 
 export default function Layout({ children }: LayoutType) {
   const { currentUser } = useUser();
-  console.log(currentUser);
 
   return (
     <>
