@@ -6,3 +6,11 @@ export interface UserType {
   phoneNumber?: string;
   role: "admin" | "client" | "moderator";
 }
+
+export interface ProductType {
+  price: number;
+  name: string;
+  quantity: number;
+  category: string;
+  brand: string;
+}

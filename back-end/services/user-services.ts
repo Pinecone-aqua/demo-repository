@@ -13,16 +13,16 @@ export async function getAllUser(): Promise<any> {
 
 export async function updateUser(
   id: string,
-  updateInput: UserType
+  updateUserInput: UserType
 ): Promise<any> {
-  return await User.findByIdAndUpdate(id, updateInput);
+  return await User.findByIdAndUpdate(id, updateUserInput);
 }
 
-export async function deleteUser(id: string): Promise<any> {
-  return await User.findByIdAndDelete(id);
+export async function deleteUser(_id: string): Promise<any> {
+  return await User.deleteOne({ _id });
 }
 
-export async function createUser(createInput: UserType): Promise<any> {
-  const user = new User(createInput);
+export async function createUser(createUserInput: UserType): Promise<any> {
+  const user = new User(createUserInput);
   return await user.save();
 }

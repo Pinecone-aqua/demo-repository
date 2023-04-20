@@ -1,17 +1,8 @@
 import Layout from "@/components/Layout";
 import UsersRow from "@/components/UsersRow";
 import axios from "axios";
-import { useEffect, useState } from "react";
 
-export default function Users() {
-  const [users, setUsers] = useState<any>();
-
-  useEffect(() => {
-    axios.get("http://localhost:2023/user").then((res) => {
-      setUsers(res.data);
-    });
-  }, []);
-
+export default function Users({ users }: any) {
   return (
     <Layout>
       <div className="m-5">Хэрэглэгчид</div>
@@ -51,4 +42,14 @@ export default function Users() {
       </div>
     </Layout>
   );
+}
+
+export async function getStaticProps() {
+  const res = await axios.get("http://localhost:2023/user");
+  const users = res.data;
+  return {
+    props: {
+      users,
+    },
+  };
 }

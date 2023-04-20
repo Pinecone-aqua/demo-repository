@@ -12,6 +12,7 @@ export default function UsersRow({ user, index }: TableRowType) {
       axios.delete(`http://localhost:2023/user/${user._id}`);
     }
   }
+
   return (
     <tr className="hover:bg-gray-50">
       <td className="flex gap-3 px-6 py-4 font-normal text-gray-900">
@@ -23,7 +24,10 @@ export default function UsersRow({ user, index }: TableRowType) {
       <td className="px-6 py-4">
         <UserModal user={user} />
       </td>
-      <td className="px-6 py-4 cursor-pointer" onClick={deleteHandler}>
+      <td
+        className="px-6 py-4 cursor-pointer text-red-500"
+        onClick={deleteHandler}
+      >
         Delete
       </td>
     </tr>

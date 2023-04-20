@@ -12,7 +12,6 @@ export default function Login() {
     console.log(e.target.password.value);
   }
   function googleLoginHandler() {
-    console.log("testing");
     axios.get("http://localhost:2023/google-login").then((res) => {
       router.push(res.data);
     });

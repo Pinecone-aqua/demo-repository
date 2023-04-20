@@ -6,6 +6,8 @@ import {
   getUser,
   updateUser,
 } from "../services/user-services";
+import { verifyToken } from "../middlewares/verifyToken";
+import { roleCheck } from "../middlewares/roleCheck";
 export const userRouter = express.Router();
 
 // create user
@@ -46,11 +48,16 @@ userRouter.put("/:id", async (req: Request, res: Response) => {
 });
 
 // delete user
-userRouter.delete("/:id", async (req: Request, res: Response) => {
-  try {
-    const user = await deleteUser(req.params.id);
-    return res.status(200).send(user);
-  } catch (err) {
-    return res.send({ error: err });
+userRouter.delete(
+  "/:id",
+  verifyToken,
+  roleCheck(["client"]),
+  async (req: Request, res: Response) => {
+    try {
+      const user = await deleteUser(req.params.id);
+      return res.status(200).send(user);
+    } catch (err) {
+      return res.send({ error: err });
+    }
   }
-});
+);
