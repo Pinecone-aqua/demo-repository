@@ -17,6 +17,7 @@ export default function Home() {
   return (
     <Layout>
       <button onClick={deleteHandler}>Delete User</button>
+      <div>Hello</div>
     </Layout>
   );
 }

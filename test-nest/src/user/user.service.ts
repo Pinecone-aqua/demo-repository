@@ -1,17 +1,23 @@
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { User } from './user.schema';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class UserService {
-  users = [{ name: 'bagalzuur', age: 13 }];
+  constructor(@InjectModel(User.name) private userModel: Model<User>) {}
+
   getAllUsers() {
-    return this.users;
+    return this.userModel.find({});
   }
 
   addUser(user) {
-    this.users.push(user);
-    return 'success';
-  }
-  getUser(name: string) {
-    return this.users.filter((user) => user.name == name);
+    try {
+      const newUser = new this.userModel(user);
+      newUser.save();
+      return 'success';
+    } catch (err) {
+      return err.message;
+    }
   }
 }
