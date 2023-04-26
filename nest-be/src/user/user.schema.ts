@@ -15,7 +15,7 @@ export class User {
   role: 'CLIENT' | 'MODERATOR' | 'ADMIN';
 }
 
-export class updateUserInput extends User {
+export class UpdateUserInput extends User {
   _id: string;
 }
 

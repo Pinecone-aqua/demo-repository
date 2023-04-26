@@ -8,7 +8,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { User, updateUserInput } from './user.schema';
+import { User, UpdateUserInput } from './user.schema';
 
 @Controller('user')
 export class UserController {
@@ -25,24 +25,42 @@ export class UserController {
 
   @Get('all')
   getAllUsers() {
-    return this.userService.getUsers();
+    try {
+      return this.userService.getUsers();
+    } catch (error) {
+      return error.message;
+    }
   }
 
   @Get(':id')
   getUser(@Param('id') _id: string) {
-    return this.userService.getUserById(_id);
+    try {
+      return this.userService.getUserById(_id);
+    } catch (error) {
+      return error.message;
+    }
   }
 
   @Patch(':id')
   updateUser(
     @Param('id') _id: string,
-    @Body() updateUserInput: updateUserInput,
+    @Body() updateUserInput: UpdateUserInput,
   ) {
-    return this.userService.updateUser(_id, updateUserInput);
+    try {
+      console.log(_id);
+      console.log(updateUserInput);
+      return this.userService.updateUser(_id, updateUserInput);
+    } catch (error) {
+      return error.message;
+    }
   }
 
   @Delete(':id')
   deleteUser(@Param('id') _id: string) {
-    return this.userService.removeUser(_id);
+    try {
+      return this.userService.removeUser(_id);
+    } catch (error) {
+      return error.message;
+    }
   }
 }

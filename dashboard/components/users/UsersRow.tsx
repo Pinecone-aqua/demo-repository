@@ -1,5 +1,5 @@
 import axios from "axios";
-import UserModal from "./UserModal";
+import EditUserModal from "./EditUserModal";
 
 interface TableRowType {
   user: any;
@@ -22,7 +22,7 @@ export default function UsersRow({ user, index }: TableRowType) {
       <td className="px-6 py-4">{user.email}</td>
       <td className="px-6 py-4">{user.role}</td>
       <td className="px-6 py-4">
-        <UserModal user={user} />
+        <EditUserModal user={user} />
       </td>
       <td
         className="px-6 py-4 cursor-pointer text-red-500"

@@ -15,7 +15,7 @@ export default function Layout({ children }: LayoutType) {
       {currentUser ? (
         <div className="flex">
           <Header />
-          <main>{children}</main>
+          <main className="w-full p-5">{children}</main>
         </div>
       ) : (
         <Login />

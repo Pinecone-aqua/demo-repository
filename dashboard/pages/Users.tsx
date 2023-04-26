@@ -1,11 +1,18 @@
 import Layout from "@/components/Layout";
-import UsersRow from "@/components/UsersRow";
+import AddUserModal from "@/components/users/AddUserModal";
+import UsersRow from "@/components/users/UsersRow";
 import axios from "axios";
 
 export default function Users({ users }: any) {
   return (
     <Layout>
-      <div className="m-5">Хэрэглэгчид</div>
+      <div className="flex justify-between m-5">
+        <div className="m-5">Хэрэглэгчид</div>
+        <div className="flex items-center">
+          <AddUserModal title="Add User" />
+        </div>
+      </div>
+
       <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">
         <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
           <thead className="bg-gray-50">
@@ -45,7 +52,7 @@ export default function Users({ users }: any) {
 }
 
 export async function getStaticProps() {
-  const res = await axios.get("http://localhost:2023/user");
+  const res = await axios.get("http://localhost:2023/user/all");
   const users = res.data;
   return {
     props: {
