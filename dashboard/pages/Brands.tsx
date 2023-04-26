@@ -8,7 +8,13 @@ export default function Brands({ brands }: any) {
   return (
     <Layout>
       <div className="m-5">
-        <AddBrandModal title="Add Brand" />
+        <div className="flex justify-between">
+          <div className="m-5">Brands</div>
+          <div className="flex items-center">
+            <AddBrandModal title="Add Brand" />
+          </div>
+        </div>
+
         <TableContainer className="mt-5 border rounded-lg shadow-md">
           <Table variant="simple">
             <Thead>

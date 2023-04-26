@@ -7,7 +7,7 @@ export default function Users({ users }: any) {
   return (
     <Layout>
       <div className="flex justify-between m-5">
-        <div className="m-5">Хэрэглэгчид</div>
+        <div className="m-5">Users</div>
         <div className="flex items-center">
           <AddUserModal title="Add User" />
         </div>
