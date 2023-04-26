@@ -1,0 +1,38 @@
+.card {
+  border: solid 1px;
+  border-color: $border;
+  border-radius: 10px;
+  width: 300px;
+  padding: 5px;
+  &-detail {
+    &-title {
+      font-size: 20px;
+    }
+    .desc {
+      color: green;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .card {
+    width: 400px;
+    padding: 10px;
+    &-detail {
+      &-title {
+        font-size: 25px;
+      }
+    }
+  }
+}
+@media screen and (min-width: 1268px) {
+  .card {
+    width: 500px;
+    padding: 15px;
+    &-detail {
+      &-title {
+        font-size: 35px;
+      }
+    }
+  }
+}

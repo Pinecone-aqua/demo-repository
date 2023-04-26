@@ -1,13 +1,9 @@
 import Layout from "@/components/Layout";
-import { useProduct } from "@/context/PropductContext";
+
 import { useUser } from "@/context/UserContext";
 
 export default function Home() {
   const { currentUser } = useUser();
-  const { products, setProducts } = useProduct("abc");
-
-  console.log("products: ", products);
-  setProducts([]);
 
   function deleteHandler() {
     fetch("http://localhost:2023/user/643fbf167054e2b349de36eb", {
@@ -23,7 +19,20 @@ export default function Home() {
   return (
     <Layout>
       <button onClick={deleteHandler}>Delete User</button>
-      <div>Hello</div>
+      <div className="card">
+        <p className="desc">abc</p>
+        <div className="card-img">
+          <img src="./test.png" alt="" />
+        </div>
+        <div className="card-detail">
+          <p className="card-detail-title">Iphone 13</p>
+          <p className="desc">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis,
+            earum!
+          </p>
+          <p className="card-detail-price">120000</p>
+        </div>
+      </div>
     </Layout>
   );
 }
