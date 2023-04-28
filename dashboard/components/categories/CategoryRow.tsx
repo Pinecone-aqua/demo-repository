@@ -1,18 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
 import { Td, Tr } from "@chakra-ui/react";
 import axios from "axios";
-import EditBrandModal from "./EditBrandModal";
+import EditCategoryModal from "./EditCategoryModal";
 
-interface BrandRowType {
-  brand: any;
+interface CategoryRowType {
+  category: any;
   index: number;
 }
 
-export default function BrandRow({ brand, index }: BrandRowType) {
+export default function CategoryRow({ category, index }: CategoryRowType) {
   function deleteHandler(_id: string) {
     if (window.confirm("Устгах уу?")) {
       axios
-        .delete(`http://localhost:2023/brand/${_id}`)
+        .delete(`http://localhost:2023/category/${_id}`)
         .then((res) => console.log(res.data));
     }
   }
@@ -20,16 +20,16 @@ export default function BrandRow({ brand, index }: BrandRowType) {
     <Tr className="hover:bg-gray-50">
       <Td>{index + 1}</Td>
       <Td>
-        <img src={brand.image} className="w-20" alt="logo" />
+        <img src={category.image} className="w-20" alt="logo" />
       </Td>
-      <Td>{brand.name}</Td>
+      <Td>{category.name}</Td>
       <Td>
         <div className="flex justify-around">
-          <EditBrandModal brand={brand} title="Edit Brand" />
+          <EditCategoryModal category={category} title="Edit Category" />
           <p
             className="text-red-500 cursor-pointer"
             onClick={() => {
-              deleteHandler(brand._id);
+              deleteHandler(category._id);
             }}
           >
             Delete
