@@ -11,10 +11,15 @@ import { Request, Response } from 'express';
 import { getAccessTokenFromCode } from './getAccessTokenFromCode';
 import { getGoogleUserInfo } from './getGoogleUserInfo';
 import { JwtService } from '@nestjs/jwt';
+import { UserService } from 'src/user/user.service';
+import { User } from 'src/user/user.schema';
 
 @Controller()
 export class GoogleLoginController {
-  constructor(private readonly jwtService: JwtService) {}
+  constructor(
+    private readonly jwtService: JwtService,
+    private readonly userService: UserService,
+  ) {}
 
   @Get('google-login')
   googleLogin() {
@@ -45,19 +50,19 @@ export class GoogleLoginController {
     const profile: any = await getGoogleUserInfo(accessToken);
     console.log(profile);
 
-    // let user = await this.userService.findByEmail(profile.email);
+    let user = await this.userService.findByEmail(profile.email);
 
-    // if (!user) {
-    //   const userInput: User = {
-    //     email: profile.email,
-    //     name: profile.name,
-    //     phoneNumber: null,
-    //     role: 'CLIENT',
-    //   };
-    //   user = await this.userService.createUser(userInput);
-    // }
+    if (!user) {
+      const userInput: User = {
+        email: profile.email,
+        name: profile.name,
+        phoneNumber: null,
+        role: 'CLIENT',
+      };
+      user = await this.userService.createUser(userInput);
+    }
 
-    const payload = { name: profile.name, email: profile.email };
+    const payload = { name: user.name, email: user.email };
     const token = this.jwtService.sign(payload);
     res
       .status(200)
