@@ -5,7 +5,6 @@ import { Table, TableContainer, Tbody, Th, Thead, Tr } from "@chakra-ui/react";
 import axios from "axios";
 
 export default function Categories({ categories }: any) {
-  console.log("categories:", categories);
   return (
     <Layout>
       <div className="m-5">

@@ -8,7 +8,7 @@ export class UserService {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
   async getUsers() {
-    return await this.userModel.find({});
+    return await this.userModel.find({}).sort({ role: 1 });
   }
 
   async findByEmail(email: string) {

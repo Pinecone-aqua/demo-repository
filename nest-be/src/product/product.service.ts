@@ -10,7 +10,7 @@ export class ProductService {
   ) {}
 
   async getProducts() {
-    return await this.productModel.find({});
+    return await this.productModel.find({}).populate('brand category');
   }
 
   async createProduct(product: Product) {
