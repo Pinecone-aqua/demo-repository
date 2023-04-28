@@ -11,6 +11,10 @@ export class UserService {
     return await this.userModel.find({});
   }
 
+  async findByEmail(email: string) {
+    return await this.userModel.findOne({ email });
+  }
+
   async createUser(user: User) {
     const newUser = new this.userModel(user);
     const result = await newUser.save();

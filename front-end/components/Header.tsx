@@ -10,7 +10,7 @@ interface HeaderType {
 
 export default function Header({ user, setUser }: HeaderType) {
   const router = useRouter();
-
+  console.log(user);
   return (
     <div className="p-5 flex justify-between border">
       <div className="flex gap-5">
@@ -27,7 +27,7 @@ export default function Header({ user, setUser }: HeaderType) {
       </div>
       {user ? (
         <div className="flex gap-5">
-          <div>hello {user.email}</div>
+          <div>hello {user.name}</div>
           <div
             className="cursor-pointer"
             onClick={() => {

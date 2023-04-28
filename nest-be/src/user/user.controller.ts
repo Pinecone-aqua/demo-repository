@@ -47,8 +47,6 @@ export class UserController {
     @Body() updateUserInput: UpdateUserInput,
   ) {
     try {
-      console.log(_id);
-      console.log(updateUserInput);
       return this.userService.updateUser(_id, updateUserInput);
     } catch (error) {
       return error.message;
