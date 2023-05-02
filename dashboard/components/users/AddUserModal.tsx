@@ -31,7 +31,7 @@ export default function AddUserModal({ title }: AddUserModalType) {
     };
     axios
       .post(`http://localhost:2023/user/add`, data)
-      .then((res) => console.log(res.data.data));
+      .then((res) => console.log(res.data));
   }
 
   return (
