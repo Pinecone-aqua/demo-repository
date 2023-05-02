@@ -62,7 +62,12 @@ export class GoogleLoginController {
       user = await this.userService.createUser(userInput);
     }
 
-    const payload = { name: user.name, email: user.email };
+    const payload = {
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      phoneNumber: user?.phoneNumber,
+    };
     const token = this.jwtService.sign(payload);
     res
       .status(200)

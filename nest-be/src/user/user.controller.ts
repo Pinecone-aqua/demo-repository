@@ -6,13 +6,20 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User, UpdateUserInput } from './user.schema';
+import { CheckRoleGuard } from 'src/role/role.guard';
+import { JwtService } from '@nestjs/jwt';
+import { CheckRole } from 'src/role/role.decorator';
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly jwtService: JwtService,
+  ) {}
 
   @Post('add')
   createUser(@Body() createUserInput: User) {
@@ -42,6 +49,8 @@ export class UserController {
   }
 
   @Patch(':id')
+  @UseGuards(CheckRoleGuard)
+  @CheckRole('MODERATOR', 'ADMIN')
   updateUser(
     @Param('id') _id: string,
     @Body() updateUserInput: UpdateUserInput,
@@ -54,6 +63,8 @@ export class UserController {
   }
 
   @Delete(':id')
+  @UseGuards(CheckRoleGuard)
+  @CheckRole('MODERATOR', 'ADMIN')
   deleteUser(@Param('id') _id: string) {
     try {
       return this.userService.removeUser(_id);

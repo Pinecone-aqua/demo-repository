@@ -8,6 +8,7 @@ import { CategoryModule } from './category/category.module';
 import { ProductModule } from './product/product.module';
 import { GoogleLoginModule } from './google-login/google-login.module';
 import { ConfigModule } from '@nestjs/config';
+import { RoleModule } from './role/role.module';
 
 @Module({
   imports: [
