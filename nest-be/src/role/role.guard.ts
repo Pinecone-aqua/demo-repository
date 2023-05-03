@@ -22,7 +22,7 @@ export class CheckRoleGuard implements CanActivate {
     }
 
     const decodedToken = this.jwtService.decode(token);
-    console.log(decodedToken);
+    console.log('decodedToken:', decodedToken);
     if (!decodedToken) {
       return false;
     }
@@ -43,9 +43,9 @@ export class CheckRoleGuard implements CanActivate {
 
     return true;
   }
+
   private extractTokenFromHeader(request: Request): string | undefined {
     const [type, token] = request.headers.authorization?.split(' ') ?? [];
-    console.log(request.headers.authorization);
     return type === 'Bearer' ? token : undefined;
   }
 }
