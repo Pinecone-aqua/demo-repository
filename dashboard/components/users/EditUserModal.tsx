@@ -14,6 +14,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 interface UserModalType {
   user: any;
@@ -24,13 +25,18 @@ export default function EditUserModal({ user }: UserModalType) {
 
   function submitHandler(e: any) {
     e.preventDefault();
+    const token = Cookies.get("token");
     const data = {
       name: e.target.name.value,
       email: e.target.email.value,
       role: e.target.role.value,
     };
     axios
-      .patch(`http://localhost:2023/user/${user._id}`, data)
+      .patch(`http://localhost:2023/user/${user._id}`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => console.log(res.data));
   }
 
