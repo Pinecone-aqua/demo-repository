@@ -20,7 +20,7 @@ export class CheckRoleGuard implements CanActivate {
     if (!token) {
       return false;
     }
-
+    console.log('test');
     const decodedToken = this.jwtService.decode(token);
     console.log('decodedToken:', decodedToken);
     if (!decodedToken) {
