@@ -25,7 +25,8 @@
     "react-icons": "^4.8.0",
     "sass": "^1.62.1",
     "tailwindcss": "3.3.1",
-    "typescript": "5.0.4"
+    "typescript": "5.0.4",
+    "jwt-decode": "3.1.2"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.3",
