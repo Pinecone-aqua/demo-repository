@@ -1,5 +1,7 @@
+import { ObjectType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
+@ObjectType()
 @Schema()
 export class Category {
   @Prop({ required: true })

@@ -1,0 +1,12 @@
+type Category {
+  name: String!
+  image: String!
+}
+
+type Query {
+  getAllCategoreis(): Category[]!
+}
+
+type Mutation {
+  createUser(name: String!, email: String!): User!
+}
