@@ -1,9 +1,20 @@
 import Layout from "@/components/Layout";
-
 import { useUser } from "@/context/UserContext";
+import { gql, useQuery } from "@apollo/client";
 
 export default function Home() {
   const { currentUser } = useUser();
+  const categories = useQuery(
+    gql`
+      query Query {
+        getAllcategories {
+          name
+          image
+        }
+      }
+    `
+  );
+  console.log(categories);
 
   function deleteHandler() {
     fetch("http://localhost:2023/user/643fbf167054e2b349de36eb", {
